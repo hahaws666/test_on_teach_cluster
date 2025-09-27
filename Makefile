@@ -1,23 +1,23 @@
 # Makefile for Simple GEMM Test
-# 适用于教学集群的CUDA编译
+# 适用于教学集群的C++编译
 
 # 编译器
-NVCC = nvcc
+CXX = g++
 
 # 编译选项
-NVCC_FLAGS = -O3 -std=c++11 -arch=sm_60
-NVCC_FLAGS += -lcublas -lcudart
+CXX_FLAGS = -O2 -std=c++11 -Wall
+CXX_FLAGS += -march=native
 
 # 目标文件
 TARGET = simple_gemm
-SOURCE = simple_gemm.cu
+SOURCE = simple_gemm.cpp
 
 # 默认目标
 all: $(TARGET)
 
 # 编译规则
 $(TARGET): $(SOURCE)
-	$(NVCC) $(NVCC_FLAGS) -o $(TARGET) $(SOURCE)
+	$(CXX) $(CXX_FLAGS) -o $(TARGET) $(SOURCE)
 
 # 清理
 clean:
